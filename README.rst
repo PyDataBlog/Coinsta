@@ -1,4 +1,4 @@
-coinsta
+Coinsta
 =======
 
 .. image:: https://img.shields.io/pypi/v/coinsta.svg
@@ -9,24 +9,34 @@ coinsta
    :target: https://www.travis-ci.org/PyDataBlog/Coinsta
    :alt: Latest Travis CI build status
 
-A Python package for acquiring both historical and current data of cryptocurrencies
+A Python package for acquiring both historical and current data of cryptocurrencies.
 
-Usage
------
+`Coinsta` was written by `Bernard Brenyah <bbrenyah@gmail.com>`_.
+
 
 Installation
 ------------
 
+
 Requirements
 ^^^^^^^^^^^^
+
+
+Usage
+-----
+
 
 Compatibility
 -------------
 
+
+Contributions
+-------
+
+
+Planned Updates
+---------------
+
+
 Licence
 -------
-
-Authors
--------
-
-`coinsta` was written by `Bernard Brenyah <bbrenyah@gmail.com>`_.

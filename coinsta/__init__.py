@@ -4,4 +4,5 @@ __version__ = '0.0.1'
 __author__ = 'Bernard Brenyah <bbrenyah@gmail.com>'
 __all__ = []
 
-from coinsta import *
+from .core import Historical, Current
+from .exceptions import WrongCoinCode

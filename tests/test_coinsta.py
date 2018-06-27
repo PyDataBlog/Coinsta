@@ -1,7 +1,8 @@
 import unittest
 import warnings
 from datetime import date
-from coinsta.core import Historical, Current, WrongCoinCode
+from coinsta.exceptions import WrongCoinCode
+from coinsta.core import Historical, Current
 
 
 class TestCoinsta(unittest.TestCase):

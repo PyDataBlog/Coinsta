@@ -2,23 +2,17 @@
 from datetime import date, datetime
 import pandas as pd
 import requests
-
+from coinsta.exceptions import WrongCoinCode
 '''
         TODO:
-        - packaging with cookiecutter: python minimal template
         - add history logs
         - add licence
         - use pipreqs to generate requirements: pipreqs /path/to/project
-        - add lxml to requirements
         - make logo
+        - add hits bad
         - submit to pypi
         - submit to zenodo
 '''
-
-
-# Personalised NotImplementedError class
-class WrongCoinCode(NotImplementedError):
-    """This coin code is unavailable at 'coinmarketcap.com'"""
 
 
 # Historical Class for all methods related to historical data
