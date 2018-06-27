@@ -44,3 +44,6 @@ Planned Updates
 
 Licence
 -------
+`FOSSA Status`_
+
+.. _FOSSA Status: https://app.fossa.io/projects/git%2Bgithub.com%2FPyDataBlog%2FCoinsta?ref=badge_large
