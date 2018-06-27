@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name="coinsta",
-    version="0.0.1",
+    version="0.1.0",
     url="https://github.com/PyDataBlog/Coinsta",
 
     author="Bernard Brenyah",
