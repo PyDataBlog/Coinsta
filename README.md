@@ -1,9 +1,7 @@
 # Coinsta
 A Python package for acquiring both historical and current data of cryptocurrencies
 
-## Build Status
-
-## Project Title
+## Project Status
 
 ## Table of Content
 
