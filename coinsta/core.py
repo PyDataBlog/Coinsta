@@ -4,12 +4,8 @@ import pandas as pd
 import requests
 from coinsta.exceptions import WrongCoinCode
 '''
-        TODO:
-        - add history logs
-        - add licence
-        - use pipreqs to generate requirements: pipreqs /path/to/project
+        TODO
         - make logo
-        - add hits bad
         - submit to pypi
         - submit to zenodo
 '''
@@ -226,7 +222,7 @@ class Current:
 
         results_dict = {}
 
-        for k, v in top_response['data'].items():
+        for _, v in top_response['data'].items():
 
             container = dict()
 
