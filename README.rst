@@ -45,7 +45,3 @@ Planned Updates
 Licence
 -------
 
-
-.. image:: https://app.fossa.io/api/projects/git%2Bgithub.com%2FPyDataBlog%2FCoinsta.svg?type=large
-    :target: https://app.fossa.io/projects/git%2Bgithub.com%2FPyDataBlog%2FCoinsta?ref=badge_large
-    :alt: FOSSA Status
