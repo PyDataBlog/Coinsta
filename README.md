@@ -2,6 +2,8 @@
 A Python package for acquiring both historical and current data of cryptocurrencies
 
 ## Project Status
+[![Build Status](https://www.travis-ci.org/PyDataBlog/Coinsta.svg?branch=master)](https://www.travis-ci.org/PyDataBlog/Coinsta)
+[![HitCount](http://hits.dwyl.io/PyDataBlog/PyDataBlog/Coinsta.svg)](http://hits.dwyl.io/PyDataBlog/PyDataBlog/Coinsta)
 
 ## Table of Content
 
@@ -30,4 +32,4 @@ A Python package for acquiring both historical and current data of cryptocurrenc
 ## License
 
 
-BSD © [BERNARD BRENYAH]()
+BSD © [Bernard Brenyah]()
