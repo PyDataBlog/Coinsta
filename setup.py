@@ -9,7 +9,7 @@ setuptools.setup(
     author_email="bbrenyah@gmail.com",
 
     description="A Python package for acquiring both historical and current data of cryptocurrencies",
-    long_description=open('README.rst').read(),
+    long_description=open('README.md').read(),
 
     packages=setuptools.find_packages(),
 
