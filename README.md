@@ -1,7 +1,7 @@
 # Coinsta
 A Python package for acquiring both historical and current data of cryptocurrencies
 
-## Project Status
+#### Project Status
 [![Build Status](https://www.travis-ci.org/PyDataBlog/Coinsta.svg?branch=master)](https://www.travis-ci.org/PyDataBlog/Coinsta)
 [![HitCount](http://hits.dwyl.io/PyDataBlog/PyDataBlog/Coinsta.svg)](http://hits.dwyl.io/PyDataBlog/PyDataBlog/Coinsta)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FPyDataBlog%2FCoinsta.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FPyDataBlog%2FCoinsta?ref=badge_shield)
@@ -32,5 +32,3 @@ A Python package for acquiring both historical and current data of cryptocurrenc
 
 ## License
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FPyDataBlog%2FCoinsta.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FPyDataBlog%2FCoinsta?ref=badge_large)
-
-BSD © [Bernard Brenyah]()
