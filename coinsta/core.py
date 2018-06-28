@@ -181,7 +181,7 @@ class Current:
                     return my_dict
 
             else:
-                raise ValueError('CoinMarketCap API is down')
+                WrongCoinCode('Invalid code from "coinmarketcap.com"')
 
         info = get_info()
 
