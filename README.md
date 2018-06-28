@@ -7,17 +7,17 @@ A Python package for acquiring both historical and current data of cryptocurrenc
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FPyDataBlog%2FCoinsta.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FPyDataBlog%2FCoinsta?ref=badge_shield)
 
 ## Table of Content
-- [Motivation](#Motivation)
-- [Frameworks Used](#Frameworks-Used)
-- [Installation](#Installation)
-- [Features](#Features)
-    - [Pending Features](#Pending-Features)
-- [Code Example](#Code-Example)
-- [How To Use](#How-To-Use)
-- [Release History](#Release-History)
-- [How To Contribute](#How-To-Contribute)
-- [Credits](#Credits)
-- [License](#License)
+- [Motivation](#motivation)
+- [Frameworks Used](#frameworks-used)
+- [Installation](#installation)
+- [Features](#features)
+    - [Pending Features](#pending-features)
+- [Code Example](#code-example)
+- [How To Use](#how-to-use)
+- [Release History](#release-history)
+- [How To Contribute](#how-to-contribute)
+- [Credits](#credits)
+- [License](#license)
 
 ### Motivation
 
