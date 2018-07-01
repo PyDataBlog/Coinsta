@@ -27,9 +27,9 @@ ___
 Why `coinsta`?
 I spent the past couple of months on a graduate dissertation which required the use of both historical and current data on cryptocurrencies. After browsing the Python Packaging Index (PYPI), I was frustrated by the lack of a Python package that catered for such needs. As far as I know only [cyrptoCMD](https://github.com/guptarohit/cryptoCMD) came close to meeting my needs. The only drawback is the that package only delivers historical data. OK so "*why not edit that project and make a pull request with your suggestions?*"
 
-That was the original plan until I realised that the scraping code could relatively be done quickly with the help of `pandas` package. If I went with the original plan I would have to rewrite the whole code and implementation ideas for `cryptoCMD` project. The only logical concclusion was start a new project that I wish I had during my data collection process. A project inspired by scripts I generated for my dissertation project.
+That was the original plan until I realised that the scraping code could relatively be done quickly with the help of `pandas` package. If I went with the original plan I would have to rewrite the whole code and implementation ideas for `cryptoCMD` project. The only logical conclusion was starting a new project that I wish I had during my data collection process. A project inspired by scripts I generated for my dissertation project.
 
-As a result, this project is the first Python project that supplies both historical and current data on cryptocurrency markets and assets.
+As a result, this project is the first Python project that supplies both historical and current data on cryptocurrency markets and assets in one coherent package.
 ____
 
 ### Frameworks Used
