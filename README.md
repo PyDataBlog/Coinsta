@@ -4,8 +4,10 @@ ___
 
 **Author:** Bernard Brenyah
 #### Project Status
+[![Latest Version](https://pypip.in/version/coinsta/badge.svg)](https://pypi.python.org/pypi/coinsta/)
 [![Build Status](https://www.travis-ci.org/PyDataBlog/Coinsta.svg?branch=master)](https://www.travis-ci.org/PyDataBlog/Coinsta)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FPyDataBlog%2FCoinsta.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FPyDataBlog%2FCoinsta?ref=badge_shield)
+[![Supported Python Version](https://pypip.in/py_versions/coinsta/badge.svg)](https://pypi.python.org/pypi/coinsta/)
 
 ## Table of Content
 1. [Motivation](#motivation) 
@@ -58,6 +60,8 @@ ___
 - [ ] Miscellaneous Functions
 - [ ] Contribution guidelines
 - [ ] test compliance with Python 3.7
+- [ ] Improve documentation and doc strings
+- [ ] Optimizaton of code
 ___
 
 ### How To Use
@@ -146,6 +150,7 @@ dict_keys(['active_cryptos', 'active_markets', 'btc_dominance', 'total_market_ca
 ___
 ### Release History
 - 0.1.0  - Initial Public Release
+- 0.1.1  - Added license info and improved documentation 
 ___
 ### How to Contribute
 This project welcomes contributions from anyone interested in this project. Guidelines for contribution is being drafted but for now a pull request with explanation of the contributions will suffice.
