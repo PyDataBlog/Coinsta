@@ -80,6 +80,7 @@ end = date(2018, 6,1)
 # get data
 coin_spec = Historical('btc', start=start, end=end)
 btc_data = coin_spec.get_data()
+print(btc_data.head())
 
 '''
 by default the end date is set to use the "today's" date
@@ -95,11 +96,14 @@ from coinsta.core import Historical
 alt_spec = Historical.from_strings('btc', '2018-3-1','2018-6-1')
 
 alt_btc = alt_spec.get_data()
+print(alt_btc.head())
 
 # another alternative method for "/" formated date strings
 other_spec = Historical.from_strings('btc', '2018/3/1','2018/6/1', hyphen=True)
 
 another_btc = other_spec.get_data()
+print(another_btc.head())
+
 ```
 
 The `get_data()` method and the `from_strings` method from the Historical class returns a `pandas` DataFrame object with sorted in an ascending order indexed the dates specified by the user:
@@ -115,12 +119,17 @@ from coinsta.core import Current
 
 # get current market information on a specified crypto
 btc_current = Current.get_current('btc')
+print(btc_current)
 
 # get the top 100 cryptos (in terms of market cap)
 current_100 = Current.top_100()
+print(current_100.head())
 
 # get global overview of crypto markets
 glo_info = Current.global_info()
+print(glo_info)
+
+
 ```
 The `get_current()` method from the current class returns a `pandas` DataFrame object with one column representing the following named rows of information on the cryptocurrency specified:
 

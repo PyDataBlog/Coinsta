@@ -6,8 +6,8 @@ from coinsta.exceptions import WrongCoinCode
 '''
         TODO
         - make logo
-        - submit to pypi
         - submit to zenodo
+        - clean up setup code
 '''
 
 
@@ -25,17 +25,6 @@ class Historical:
         :end argument accepts a date object representing YYYYMMDD.
         :ticker argument accepts strings representing ticker information
         """
-        # check for the required presence of pandas package
-        try:
-            import pandas as pd
-        except ImportError:
-            pd = None
-
-        if pd is None:
-            raise NotImplementedError(
-                "This package requires the installation of the 'pandas' package"
-                "Install 'pandas' package with pip or conda"
-            )
 
         # check for mispecification
         if isinstance(start, date) is False:
