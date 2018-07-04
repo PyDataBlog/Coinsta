@@ -10,6 +10,7 @@ ___
 [![License](https://pypip.in/license/coinsta/badge.svg)](https://pypi.python.org/pypi/coinsta/)
 [![Supported Python Version](https://pypip.in/py_versions/coinsta/badge.svg)](https://pypi.python.org/pypi/coinsta/)
 [![HitCount](http://hits.dwyl.io/PyDataBlog/Coinsta.svg)](http://hits.dwyl.io/PyDataBlog/Coinsta)
+[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/PyDataBlog/Coinsta/master)
 
 ## Table of Content
 1. [Motivation](#motivation) 
@@ -64,7 +65,9 @@ ___
 - [ ] test compliance with Python 3.7
 - [ ] Improve documentation and doc strings
 - [ ] Optimizaton of code
-___
+- [ ] Support for CoinMarketCap's historical snapshots
+- [ ] Support for market index comparisons
+- 
 
 ### How To Use
 **Historical Data:**
@@ -93,13 +96,13 @@ by default the end date is set to use the "today's" date
 from coinsta.core import Historical
 
 # default alternative method for "-" formatted date strings
-alt_spec = Historical.from_strings('btc', '2018-3-1','2018-6-1')
+alt_spec = Historical.from_strings('btc', '2018-3-1','2018-6-1', hyphen=True)
 
 alt_btc = alt_spec.get_data()
 print(alt_btc.head())
 
 # another alternative method for "/" formated date strings
-other_spec = Historical.from_strings('btc', '2018/3/1','2018/6/1', hyphen=True)
+other_spec = Historical.from_strings('btc', '2018/3/1','2018/6/1', hyphen=False)
 
 another_btc = other_spec.get_data()
 print(another_btc.head())

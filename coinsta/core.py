@@ -8,6 +8,7 @@ from coinsta.exceptions import WrongCoinCode
         - make logo
         - submit to zenodo
         - clean up setup code
+        - py 3.5 support
 '''
 
 
