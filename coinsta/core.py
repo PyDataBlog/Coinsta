@@ -3,12 +3,12 @@ from datetime import date, datetime
 import pandas as pd
 import requests
 from coinsta.exceptions import WrongCoinCode
+
 '''
         TODO
         - make logo
         - submit to zenodo
         - clean up setup code
-        - py 3.5 support
 '''
 
 
@@ -237,13 +237,16 @@ class Current:
             results_dict[container['name']] = container
 
         df = pd.DataFrame.from_dict(results_dict, orient='index').reset_index(drop=True)
-        
+
         return df.sort_values('rank').reset_index(drop=True)
 
 
+'''
 class HistoricalSnapshot:
     """
     A class that returns a historical snapshot of Cryptocurrency market with information
     on the highest ranking cryptocurrencies.
     """
     pass
+
+'''
