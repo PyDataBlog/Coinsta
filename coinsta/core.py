@@ -52,11 +52,15 @@ class Historical:
         self.end = end
 
     def __repr__(self):
-        return f"<Historical({self.ticker}, {self.start}, {self.end})>"
+        return "<Historical({0}, {1}, {2})>".format(self.ticker, self.start, self.end)
 
     def __str__(self):
-        return f"Coinsta object: \n crypto_symbol: {self.ticker}" \
-               f"\n start_period: {self.start} \n end_period: {self.end}\n"
+        return "Coinsta object: \n crypto_symbol: {0} \n start_period: {1} \n end_period: {2}".format(self.ticker,
+                                                                                                      self.start,
+                                                                                                      self.end)
+
+        # f"Coinsta object: \n crypto_symbol: {self.ticker}" \
+        # f"\n start_period: {self.start} \n end_period: {self.end}\n"
 
     def get_data(self):
         """
@@ -82,7 +86,11 @@ class Historical:
 
         slug = ticker_checker(self.ticker)
 
-        site_url = f"https://coinmarketcap.com/currencies/{slug}/historical-data/?start={self.start}&end={self.end}"
+        site_url = "https://coinmarketcap.com/currencies/{0}/historical-data/?start={1}&end={2}".format(slug,
+                                                                                                        self.start,
+                                                                                                        self.end)
+        # f"https://coinmarketcap.com/currencies/{slug}/historical-data/?start={self.start}&end={self.end}"
+
         data = pd.read_html(site_url)
         df = data[0]
         df['Date'] = pd.to_datetime(df['Date'])
@@ -128,6 +136,7 @@ class Current:
 
     def __init__(self):
         # check for the required presence of pandas package
+        # replace with check for API read errors instead
         try:
             import pandas as pd
         except ImportError:
@@ -230,3 +239,11 @@ class Current:
         df = pd.DataFrame.from_dict(results_dict, orient='index').reset_index(drop=True)
         
         return df.sort_values('rank').reset_index(drop=True)
+
+
+class HistoricalSnapshot:
+    """
+    A class that returns a historical snapshot of Cryptocurrency market with information
+    on the highest ranking cryptocurrencies.
+    """
+    pass

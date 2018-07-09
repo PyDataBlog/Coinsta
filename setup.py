@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name="coinsta",
-    version="0.1.1",
+    version="0.1.2",
     url="https://github.com/PyDataBlog/Coinsta",
 
     author="Bernard Brenyah",
@@ -23,6 +23,7 @@ setuptools.setup(
         'Development Status :: 4 - Beta',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3 :: Only',
+        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         "License :: OSI Approved :: BSD License",
     ],
