@@ -59,15 +59,14 @@ ___
 - Historical data on all active cryptocurrencies
 
 ##### Pending Features
-- [ ] Support for Python 3.5
+- [X] Support for Python 3.5
 - [ ] Miscellaneous Functions
 - [ ] Contribution guidelines
-- [ ] test compliance with Python 3.7
+- [X] test compliance with Python 3.7
 - [ ] Improve documentation and doc strings
 - [ ] Optimizaton of code
 - [ ] Support for CoinMarketCap's historical snapshots
 - [ ] Support for market index comparisons
-- 
 
 ### How To Use
 **Historical Data:**
@@ -163,9 +162,10 @@ dict_keys(['active_cryptos', 'active_markets', 'btc_dominance', 'total_market_ca
 ```
 ___
 ### Release History
-- 0.1.0  - Initial Public Release
+- 0.1.2  - Added support for Python 3.5 and 3.7 
 - 0.1.1  - Added license info and improved documentation 
-___
+- 0.1.0  - Initial Public Release
+
 ### How to Contribute
 This project welcomes contributions from anyone interested in this project. Guidelines for contribution is being drafted but for now a pull request with explanation of the contributions will suffice.
 ___
