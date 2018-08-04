@@ -117,14 +117,28 @@ Date
 ```
 
 **Historical Snapshots:**
-```py
+```python
 from coinsta.core import HistoricalSnapshot
-
+from datetime import date
+snap_date = date(2018, 7, 29)
+july_2018 = HistoricalSnapshot(snap_date)
+july_2018_snapshot = july_2018.get_snapshot()
+print(july_2018_snapshot.info())
 ```
 
+So what was the top cryptocurrency (in terms of market capitalisation) on date XYZ?
+Luckily, CoinMarketCap delivers periodic snapshots of the this type of rankings. The `HistoricalSnapshot` class taps into data to supply users with such information.
+
+
+The Historical Snapshot feature returns a Pandas DataFrame object with the following self describing columns:
+```
+Index(['Rank', 'Name', 'Symbol', 'Market Cap', 'Price', 'Circulating Supply',
+       'Volume (24h)', '% 1h', '% 24h', '% 7d'],
+      dtype='object')
+```
 
 **Current Data:**
-```py
+```python
 # import the Current class 
 from coinsta.core import Current
 
@@ -168,25 +182,6 @@ Finally, the `global_info()` method in Current class returns a dictionary with t
 
 ```
 dict_keys(['active_cryptos', 'active_markets', 'btc_dominance', 'total_market_cap', 'total_volume_24h'])
-```
-
-**Historical Snapshots:**
-So what was the top cryptocurrency (in terms of market capitalisation) on date XYZ?
-Luckily, CoinMarketCap delivers periodic snapshots of the this type of rankings. The `HistoricalSnapshot` class taps into data to supply users with such information.
-
-```python
-from coinsta.core import HistoricalSnapshot
-from datetime import date
-snap_date = date(2018, 7, 29)
-july_2018 = HistoricalSnapshot(snap_date)
-july_2018_snapshot = july_2018.get_snapshot()
-print(july_2018_snapshot.info())
-```
-The Historical Snapshot feature returns a Pandas DataFrame object with the following self describing columns:
-```
-Index(['Rank', 'Name', 'Symbol', 'Market Cap', 'Price', 'Circulating Supply',
-       'Volume (24h)', '% 1h', '% 24h', '% 7d'],
-      dtype='object')
 ```
 
 ___
