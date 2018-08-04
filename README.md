@@ -6,6 +6,7 @@ ___
 #### Project Status
 [![Latest Version](https://pypip.in/version/coinsta/badge.svg)](https://pypi.python.org/pypi/coinsta/)
 [![Build Status](https://www.travis-ci.org/PyDataBlog/Coinsta.svg?branch=master)](https://www.travis-ci.org/PyDataBlog/Coinsta)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/PyDataBlog/Coinsta/commits/master)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FPyDataBlog%2FCoinsta.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FPyDataBlog%2FCoinsta?ref=badge_shield)
 [![License](https://pypip.in/license/coinsta/badge.svg)](https://pypi.python.org/pypi/coinsta/)
 [![Supported Python Version](https://pypip.in/py_versions/coinsta/badge.svg)](https://pypi.python.org/pypi/coinsta/)
@@ -64,8 +65,8 @@ ___
 - [ ] Contribution guidelines
 - [X] test compliance with Python 3.7
 - [ ] Improve documentation and doc strings
-- [ ] Optimizaton of code
-- [ ] Support for CoinMarketCap's historical snapshots
+- [ ] Optimisation of code
+- [X] Support for CoinMarketCap's historical snapshots
 - [ ] Support for market index comparisons
 
 ### How To Use
@@ -114,6 +115,14 @@ The `get_data()` method and the `from_strings` method from the Historical class 
     Open     High      Low    Close      Volume    Market_cap
 Date
 ```
+
+**Historical Snapshots:**
+```py
+from coinsta.core import HistoricalSnapshot
+
+```
+
+
 **Current Data:**
 ```py
 # import the Current class 
@@ -162,6 +171,7 @@ dict_keys(['active_cryptos', 'active_markets', 'btc_dominance', 'total_market_ca
 ```
 ___
 ### Release History
+- 0.1.3  - Added Historical Snapshot feature
 - 0.1.2  - Added support for Python 3.5 and 3.7 
 - 0.1.1  - Added license info and improved documentation 
 - 0.1.0  - Initial Public Release
