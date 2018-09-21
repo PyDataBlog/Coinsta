@@ -15,10 +15,13 @@ class Historical:
 
     def __init__(self, ticker, start, end=None):
         """
+        This method initialises the Historical object based on the
+        ticker, starting period, and ending period as specified by
+        users.
 
-        :param ticker: accepts a date object representing YYYYMMDD.
-        :param start: accepts a date object representing YYYYMMDD.
-        :param end: accepts strings representing ticker information
+        :param ticker: str object representing ticker information.
+        :param start: a Datetime date object representing YYYYMMDD.
+        :param end: a Datetime date object representing YYYYMMDD.
         """
 
         # check for mispecification
@@ -26,7 +29,7 @@ class Historical:
             raise TypeError("Start argument must be a date object or strings with the alternative 'from_strings' "
                             "constructor")
 
-        # convert start day into to appriopriate format
+        # convert start day into to appriopriate format for scraping data from CoinMarketCap
         start = start.isoformat().replace("-", "")
 
         # use today's date unless otherwise specified by user
@@ -64,7 +67,7 @@ class Historical:
         This function scrapes and cleans the data of the specified tickers
         from CoinMarketCap website.
 
-        :return:
+        :return: A Pandas DataFrame object containing historical data on the specified tickers.
         """
         def ticker_checker(ticker):
             """
@@ -115,14 +118,15 @@ class Historical:
         """
         An alternative constructor that accepts strings
         string format YYYY-MM-DD or YYYY/MM/DD.
-        Default format is the hyphen separate string: YYYY-MM-DD
-        Turn arg `hyphen` to False if string to be parsed is: YYYY/MM/DD
+        Default format is the hyphen separate string: YYYY-MM-DD.
+        Turn `hyphen` to False if string to be parsed is: YYYY/MM/DD.
 
-        :param ticker:
-        :param start:
-        :param end:
-        :param hyphen:
-        :return:
+        :param ticker: A str object specifying the ticker information
+        :param start: A str object specifying the starting period under consideration.
+        :param end: A str object specifying the ending period under consideration.
+        :param hyphen: A boolean object indicating the separator in the start/end str is "-" or "/". Default is "-".
+
+        :return: A Pandas DataFrame object containing historical data on the specified ticker.
         """
 
         if hyphen:
@@ -139,11 +143,11 @@ class Historical:
 class Current:
     """
     A class that connects to CoinMarketCap API and returns current
-    data information for specified ticker
+    data information for specified ticker.
     """
 
     def __init__(self):
-        # replace with check for API read errors instead
+        # check for API read errors
         api_link = "https://api.coinmarketcap.com/v2/ticker/?limit=0"
         api_check = requests.get(api_link)
         if api_check.status_code != 200:
@@ -154,9 +158,10 @@ class Current:
     @staticmethod
     def get_current(ticker):
         """
+        This method returns the current information on tickers supplied.
 
-        :param ticker:
-        :return:
+        :param ticker: a str object representing the ticker information of the cryptocurrency under consideration.
+        :return: A Pandas DataFrame object with current data on the specified ticker.
         """
         def get_info():
             url = "https://api.coinmarketcap.com/v2/ticker/?limit=0"
@@ -195,7 +200,7 @@ class Current:
         representing the status of all cryptocurrencies
         tracked by Coinmarketcap.
 
-        :return:
+        :return: A dictionary object with data on global cryptocurrency markets.
         """
         global_url = 'https://api.coinmarketcap.com/v2/global/'
         global_response = requests.get(global_url).json()
@@ -218,9 +223,9 @@ class Current:
     def top_100():
         """
         This method returns the name, ticker symbol and current price
-        of the top 100 cryptocurrencies in terms of market capitalisation
+        of the top 100 cryptocurrencies in terms of market capitalisation.
 
-        :return:
+        :return: A Pandas DataFrame object with data on the top 100 cryptocurrencies.
         """
         api_url = "https://api.coinmarketcap.com/v2/ticker/?limit=0"
 
@@ -260,6 +265,7 @@ class HistoricalSnapshot:
     A class that returns a historical snapshot of Cryptocurrency market information
     on a specified period of time.
     """
+
     def __init__(self, period):
         assert isinstance(period, date)
         self.period = period
@@ -275,8 +281,9 @@ class HistoricalSnapshot:
 
     def get_snapshot(self):
         """
+        A method the retrieves a historical snapshot of cryptocurrency markets via CoinMarketCap.
 
-        :return:
+        :return: A Pandas DataFrame object with historical snapshot data of the period specified.
         """
         snap_date = self.period.isoformat().replace("-", "")
         snap_url = "https://coinmarketcap.com/historical/{0}".format(snap_date)
@@ -295,10 +302,13 @@ class HistoricalSnapshot:
     @classmethod
     def from_strings(cls, string_period, hyphen=True):
         """
+        An alternative constructor for retrieving historical snapshots of cryptocurrency markets via CoinMarketCap.
 
-        :param string_period:
-        :param hyphen:
-        :return:
+        :param string_period: str object specifying the period under consideration.
+        :param hyphen: bool value with the default value
+                       indicating a separation of string_period by a "-" and "/" otherwise.
+
+        :return: A Pandas DataFrame object with historical snapshot data of the period specified.
         """
         if hyphen:
             string_period = datetime.strptime(string_period, "%Y-%m-%d").date()

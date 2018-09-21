@@ -58,6 +58,7 @@ ___
 - Current market information on the top 100 cryptocurrencies
 - Current data on a specified cryptocurrency 
 - Historical data on all active cryptocurrencies
+- Get historical snapshots of cryptocurrencies 
 
 ##### Pending Features
 - [X] Support for Python 3.5
