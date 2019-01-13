@@ -196,7 +196,7 @@ ___
 This project welcomes contributions from anyone interested in this project. Guidelines for contribution is being drafted but for now a pull request with explanation of the contributions will suffice.
 ___
 ### Credits
-Shoutout to [CoinMarketCap]() :heart: for the access to their API as well as allowing projects such as this plug into the datawarehouse.
+Shoutout to [CoinMarketCap](https://coinmarketcap.com/) :heart: for the access to their API as well as allowing projects such as this plug into the datawarehouse.
 ___
 ### License
 License: [BSD-3](https://github.com/PyDataBlog/Coinsta/blob/master/LICENSE) 
