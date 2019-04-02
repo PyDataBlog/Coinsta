@@ -117,15 +117,6 @@ The `get_data()` method and the `from_strings` method from the Historical class 
 Date
 ```
 
-**Historical Snapshots:**
-```python
-from coinsta.core import HistoricalSnapshot
-from datetime import date
-snap_date = date(2018, 7, 29)
-july_2018 = HistoricalSnapshot(snap_date)
-july_2018_snapshot = july_2018.get_snapshot()
-print(july_2018_snapshot.info())
-```
 
 So what was the top cryptocurrency (in terms of market capitalisation) on date XYZ?
 Luckily, CoinMarketCap delivers periodic snapshots of the this type of rankings. The `HistoricalSnapshot` class taps into data to supply users with such information.
@@ -137,6 +128,19 @@ Index(['Rank', 'Name', 'Symbol', 'Market Cap', 'Price', 'Circulating Supply',
        'Volume (24h)', '% 1h', '% 24h', '% 7d'],
       dtype='object')
 ```
+
+
+**Historical Snapshots:**
+```python
+from coinsta.core import HistoricalSnapshot
+from datetime import date
+snap_date = date(2018, 7, 29)
+july_2018 = HistoricalSnapshot(snap_date)
+july_2018_snapshot = july_2018.get_snapshot()
+print(july_2018_snapshot.info())
+```
+
+
 
 **Current Data:**
 ```python
