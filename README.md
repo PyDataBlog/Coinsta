@@ -10,7 +10,6 @@ ___
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FPyDataBlog%2FCoinsta.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FPyDataBlog%2FCoinsta?ref=badge_shield)
 [![License](https://pypip.in/license/coinsta/badge.svg)](https://pypi.python.org/pypi/coinsta/)
 [![Supported Python Version](https://pypip.in/py_versions/coinsta/badge.svg)](https://pypi.python.org/pypi/coinsta/)
-[![HitCount](http://hits.dwyl.io/PyDataBlog/Coinsta.svg)](http://hits.dwyl.io/PyDataBlog/Coinsta)
 [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/PyDataBlog/Coinsta/master)
 
 ## Table of Content
