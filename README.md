@@ -60,14 +60,12 @@ ___
 - Get historical snapshots of cryptocurrencies 
 
 ##### Pending Features
+- [ ] Migrate the current class to the new CoinMarketCap API
 - [X] Support for Python 3.5
-- [ ] Miscellaneous Functions
-- [ ] Contribution guidelines
 - [X] test compliance with Python 3.7
 - [ ] Improve documentation and doc strings
 - [ ] Optimisation of code
 - [X] Support for CoinMarketCap's historical snapshots
-- [ ] Support for market index comparisons
 
 ### How To Use
 **Historical Data:**
@@ -140,8 +138,8 @@ print(july_2018_snapshot.info())
 ```
 
 
-
-**Current Data:**
+# NB: Current Data functionality deprecated until the re-write is completed
+**Current Data:** 
 ```python
 # import the Current class 
 from coinsta.core import Current
