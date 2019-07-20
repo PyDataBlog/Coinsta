@@ -1,7 +1,8 @@
+import sys
+sys.path.insert(0, '')
+from datetime import date
 from coinsta.core import Historical, Current, HistoricalSnapshot
 
-
-from datetime import date
 
 '''
 # specify dates considered
@@ -12,7 +13,7 @@ end = date(2018, 6, 1)
 # get data
 coin_spec = Historical('btc', start=start, end=end)
 btc_data = coin_spec.get_data()
-print(btc_data.head())ls
+print(btc_data.head())
 
 
 # default alternative method for "-" formatted date strings

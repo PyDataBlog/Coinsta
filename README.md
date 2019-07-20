@@ -4,12 +4,13 @@ ___
 
 **Author:** Bernard Brenyah
 #### Project Status
-[![Latest Version](https://pypip.in/version/coinsta/badge.svg)](https://pypi.python.org/pypi/coinsta/)
+[![Latest Version](https://img.shields.io/pypi/v/coinsta.svg)](https://pypi.python.org/pypi/coinsta/)
 [![Build Status](https://www.travis-ci.org/PyDataBlog/Coinsta.svg?branch=master)](https://www.travis-ci.org/PyDataBlog/Coinsta)
+[![Issues](https://img.shields.io/github/issues/PyDataBlog/coinsta.svg)](https://github.com/PyDataBlog/Coinsta/issues)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/PyDataBlog/Coinsta/commits/master)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FPyDataBlog%2FCoinsta.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FPyDataBlog%2FCoinsta?ref=badge_shield)
-[![License](https://pypip.in/license/coinsta/badge.svg)](https://pypi.python.org/pypi/coinsta/)
-[![Supported Python Version](https://pypip.in/py_versions/coinsta/badge.svg)](https://pypi.python.org/pypi/coinsta/)
+[![License](https://img.shields.io/pypi/l/coinsta.svg?color=green)](https://pypi.python.org/pypi/coinsta/)
+[![Supported Python Version](https://img.shields.io/pypi/pyversions/coinsta.svg)](https://pypi.python.org/pypi/coinsta/)
 [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/PyDataBlog/Coinsta/master)
 
 ## Table of Content
@@ -38,6 +39,7 @@ This package leverages the power of the following packages:
 - `pandas`
 - `requests`
 - `lxml`
+- `PyQuery`
 ___
 ### Installation
 The easiest way to install Coinsta is to use the default python package installer `pip`:

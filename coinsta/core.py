@@ -1,15 +1,16 @@
 # needed libraries
-from datetime import date, datetime
 import pandas as pd
 import requests
-from coinsta.exceptions import WrongCoinCode, CoinMarketCapDown, BadSnapshotURL
+from coinsta.exceptions import CoinMarketCapDown, BadSnapshotURL
+from coinsta.utils import _readable_date, _ticker_checker, _snapshot_readable_date
+from datetime import date, datetime
 
 
 # Historical Class for all methods related to historical data
 class Historical:
     """
     A class that provides methods for scraping historical price data
-    based on specified cryptocurrencies and time period from
+    based on specified crypto-currencies and time period from
     CoinMarketCap.
     """
 
@@ -24,15 +25,15 @@ class Historical:
         :param end: a Datetime date object representing YYYYMMDD.
         """
 
-        # check for mispecification
+        # Check for mis-specification of dates
         if isinstance(start, date) is False:
             raise TypeError("Start argument must be a date object or strings with the alternative 'from_strings' "
                             "constructor")
 
-        # convert start day into to appriopriate format for scraping data from CoinMarketCap
+        # Convert start day into to appropriate format for scraping data from CoinMarketCap
         start = start.isoformat().replace("-", "")
 
-        # use today's date unless otherwise specified by user
+        # Use today's date unless otherwise specified by user
         if end is None:
             today = date.today()
             formatted_today = today.isoformat().replace("-", "")
@@ -43,7 +44,7 @@ class Historical:
         else:
             end = end.isoformat().replace("-", "")
 
-        # self assign default args 
+        # Self assign default args
         self.ticker = ticker
         self.start = start
         self.end = end
@@ -52,14 +53,10 @@ class Historical:
         return "<Historical({0}, {1}, {2})>".format(self.ticker, self.start, self.end)
 
     def __str__(self):
-
-        def readable_date(string):
-            return datetime.strptime(string, '%Y%m%d').date().strftime('%B %d, %Y')
-
         return "Coinsta object: \n crypto_symbol: {0} \n start_period: {1} \n" \
                " end_period: {2}".format(self.ticker,
-                                         readable_date(self.start),
-                                         readable_date(self.end)
+                                         _readable_date(self.start),
+                                         _readable_date(self.end)
                                          )
 
     def get_data(self):
@@ -69,33 +66,15 @@ class Historical:
 
         :return: A Pandas DataFrame object containing historical data on the specified tickers.
         """
-        def ticker_checker(ticker):
-            """
-            This method shows all valid coin tickers used by
-            the CoinMarketCap website. Users can use this method
-            to know the name of the cryptocurrency of interest.
-            """
-            api_url = "https://api.coinmarketcap.com/v2/ticker/?limit=0"
-            api_check = requests.get(api_url)
 
-            if api_check.status_code != 200:
-                raise CoinMarketCapDown("CoinMarketCap API is down. Try later")
-            else:
-                response = requests.get(api_url).json()
+        # Get the ticker id used by CoinMarketCap
+        slug = _ticker_checker(self.ticker)
 
-            coins_dict = response['data']
-
-            for v in coins_dict.values():
-                if v['symbol'] == ticker.upper():
-                    return v['website_slug']
-            raise WrongCoinCode('Invalid code from "coinmarketcap.com"')
-
-        slug = ticker_checker(self.ticker)
-
+        # Custom data url based on the user specified ticker and starting period and ending period
         site_url = "https://coinmarketcap.com/currencies/{0}/historical-data/?start={1}&end={2}".format(slug,
                                                                                                         self.start,
                                                                                                         self.end)
-
+        # Download the data based on the custom data url
         data = pd.read_html(site_url)
         df = data[0]
         df['Date'] = pd.to_datetime(df['Date'])
@@ -139,19 +118,10 @@ class Historical:
         return cls(ticker, start, end)
 
 
-# Current class for all methods related to current cryptocurrency information
-class Current:
-    """
-    A class that connects to CoinMarketCap API and returns current
-    data information for specified ticker.
-    """
-    pass
-
-
 # A class that handles historical snapshots of crypto markets
 class HistoricalSnapshot:
     """
-    A class that returns a historical snapshot of Cryptocurrency market information
+    A class that returns a historical snapshot of crypto-currency market information
     on a specified period of time.
     """
 
@@ -163,14 +133,12 @@ class HistoricalSnapshot:
         return "<HistoricalSnapshot({0})>".format(self.period)
 
     def __str__(self):
-        def readable_date(specified_date):
-            return specified_date.strftime('%B %d, %Y')
 
-        return "CoinMarketCap Historical Snapshot for the period: {0}".format(readable_date(self.period))
+        return "CoinMarketCap Historical Snapshot for the period: {0}".format(_snapshot_readable_date(self.period))
 
     def get_snapshot(self):
         """
-        A method the retrieves a historical snapshot of cryptocurrency markets via CoinMarketCap.
+        A method the retrieves a historical snapshot of crypto-currency markets via CoinMarketCap.
 
         :return: A Pandas DataFrame object with historical snapshot data of the period specified.
         """
@@ -191,7 +159,7 @@ class HistoricalSnapshot:
     @classmethod
     def from_strings(cls, string_period, hyphen=True):
         """
-        An alternative constructor for retrieving historical snapshots of cryptocurrency markets via CoinMarketCap.
+        An alternative constructor for retrieving historical snapshots of crypto-currency markets via CoinMarketCap.
 
         :param string_period: str object specifying the period under consideration.
         :param hyphen: bool value with the default value
@@ -206,3 +174,10 @@ class HistoricalSnapshot:
         return cls(string_period).get_snapshot()
 
 
+# Current class for all methods related to current crypto-currency information
+class Current:
+    """
+    A class that connects to CoinMarketCap API and returns current
+    data information for specified ticker.
+    """
+    pass
