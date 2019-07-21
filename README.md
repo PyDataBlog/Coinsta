@@ -1,5 +1,5 @@
 # Coinsta
-A Python :snake: package for acquiring both historical and current data of cryptocurrencies:moneybag:.
+A Python :snake: package for acquiring both historical and current data of crypto-currencies:moneybag:.
 ___
 
 **Author:** Bernard Brenyah

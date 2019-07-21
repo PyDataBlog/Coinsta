@@ -1,9 +1,11 @@
-# needed libraries
+# Needed libraries
 import pandas as pd
 import requests
-from coinsta.exceptions import CoinMarketCapDown, BadSnapshotURL
-from coinsta.utils import _readable_date, _ticker_checker, _snapshot_readable_date
+from pandas.io.json import json_normalize
+from coinsta.exceptions import BadSnapshotURL, WrongCoinCode
+from coinsta.utils import _readable_date, _ticker_checker, _snapshot_readable_date, _parse_cmc_url
 from datetime import date, datetime
+from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
 
 
 # Historical Class for all methods related to historical data
@@ -77,8 +79,10 @@ class Historical:
         # Download the data based on the custom data url
         data = pd.read_html(site_url)
         df = data[0]
+        
+        # Clean up the DataFrame
         df['Date'] = pd.to_datetime(df['Date'])
-
+        
         df.rename(
             {
                 "Open*": "Open",
@@ -180,4 +184,106 @@ class Current:
     A class that connects to CoinMarketCap API and returns current
     data information for specified ticker.
     """
-    pass
+
+    def __init__(self, api_key=None, currency='USD'):
+        self.api_key = api_key
+        self.currency = currency.upper()
+
+    def __repr__(self):
+        return "<Current(api_key={1}, currency{1})>".format(self.api_key, self.currency)
+
+    def __str__(self):
+        return "Current class specified with key: {0} & currency: {1}".format(self.api_key, self.currency)
+
+    def get_current(self, ticker):
+        """
+        The method returns the latest price information for the user supplied ticker.
+
+        :param ticker: A string representing the ticker of the crypto-currency of interest.
+        :return: A dictionary object containing current market and price information on the ticker supplied.
+        """
+        url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest'
+
+        try:
+            response_data = _parse_cmc_url(url=url, api_key=self.api_key, convert=self.currency, symbol=ticker.upper())
+
+            coins_dict = response_data['data']
+
+            for v in coins_dict.values():
+
+                my_dict = dict()
+                my_dict['name'] = v['name']
+                my_dict['symbol'] = v['symbol']
+                my_dict['rank'] = v['cmc_rank']
+                my_dict['circulating_supply'] = v['circulating_supply']
+                my_dict['total_supply'] = v['total_supply']
+                my_dict['max_supply'] = v['max_supply']
+
+                quotes = v['quote'][self.currency]
+
+                for key, val in quotes.items():
+                    my_dict[key] = val
+
+                return my_dict
+
+            else:
+                WrongCoinCode('Invalid code from "CoinMarketCap.com"')
+
+        except (ConnectionError, Timeout, TooManyRedirects) as e:
+            raise e
+
+    def global_info(self):
+        """
+        A method that returns market information at the global level.
+
+        :return: A dictionary object containing global market information of crypto-currencies.
+        """
+        url = 'https://pro-api.coinmarketcap.com/v1/global-metrics/quotes/latest'
+
+        try:
+            global_response = _parse_cmc_url(url=url, api_key=self.api_key, convert=self.currency)
+
+            for _, _ in global_response.items():
+
+                glo_dict = dict()
+
+                glo_dict['active_cryptos'] = global_response['data']['active_cryptocurrencies']
+                glo_dict['active_exchanges'] = global_response['data']['active_exchanges']
+                glo_dict['btc_dominance'] = global_response['data']['btc_dominance']
+                glo_dict['eth_dominance'] = global_response['data']['eth_dominance']
+
+                glo_quotes = global_response['data']['quote'][self.currency]
+
+                for key, value in glo_quotes.items():
+                    glo_dict[key] = value
+
+                return glo_dict  # pd.DataFrame.from_dict(glo_dict, orient='index')
+
+        except (ConnectionError, Timeout, TooManyRedirects) as e:
+            raise e
+
+    def top_100(self, limit=100):
+        """
+        A method that
+
+        :param limit: Integer (default=100) representing the number of listings
+        :return: A Pandas DataFrame object containing all market and price information of number of listings requested
+        """
+
+        url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
+
+        try:
+            top_response = _parse_cmc_url(url=url, api_key=self.api_key, convert=self.currency, limit=limit)
+
+            # Convert the data from the json into a Pandas DataFrame
+            df = pd.DataFrame.from_records(top_response['data'])
+
+            #
+            main_df = df.drop('quote', axis='columns')
+            expanded_df = json_normalize(df['quote'])
+
+            combo_df = pd.concat([main_df, expanded_df], axis='columns')
+            return combo_df
+
+        except (ConnectionError, Timeout, TooManyRedirects) as e:
+            raise e

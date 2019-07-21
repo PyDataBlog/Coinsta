@@ -3,7 +3,6 @@ sys.path.insert(0, '')
 from datetime import date
 from coinsta.core import Historical, Current, HistoricalSnapshot
 
-
 '''
 # specify dates considered
 start = date(2018, 3, 1)
