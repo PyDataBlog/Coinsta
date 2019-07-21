@@ -207,6 +207,9 @@ class Current:
         try:
             response_data = _parse_cmc_url(url=url, api_key=self.api_key, convert=self.currency, symbol=ticker.upper())
 
+            if response_data['status']['error_code'] == 400:
+                raise WrongCoinCode('Invalid ticker from "CoinMarketCap.com". Please supply a valid crypto ticker')
+
             coins_dict = response_data['data']
 
             for v in coins_dict.values():
@@ -225,9 +228,6 @@ class Current:
                     my_dict[key] = val
 
                 return my_dict
-
-            else:
-                WrongCoinCode('Invalid code from "CoinMarketCap.com"')
 
         except (ConnectionError, Timeout, TooManyRedirects) as e:
             raise e
