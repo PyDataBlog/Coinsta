@@ -62,11 +62,11 @@ ___
 - Get historical snapshots of cryptocurrencies 
 
 ##### Pending Features
-- [ ] Migrate the current class to the new CoinMarketCap API
+- [X] Migrate the current class to the new CoinMarketCap API
 - [X] Support for Python 3.5
 - [X] test compliance with Python 3.7
 - [ ] Improve documentation and doc strings
-- [ ] Optimisation of code
+- [X] Optimisation of code
 - [X] Support for CoinMarketCap's historical snapshots
 
 ### How To Use
@@ -133,9 +133,12 @@ Index(['Rank', 'Name', 'Symbol', 'Market Cap', 'Price', 'Circulating Supply',
 ```python
 from coinsta.core import HistoricalSnapshot
 from datetime import date
+
 snap_date = date(2018, 7, 29)
+
 july_2018 = HistoricalSnapshot(snap_date)
 july_2018_snapshot = july_2018.get_snapshot()
+
 print(july_2018_snapshot.info())
 ```
 
