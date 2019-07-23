@@ -3,9 +3,6 @@ sys.path.insert(0, '')
 from datetime import date
 from coinsta.core import Historical, Current, HistoricalSnapshot
 
-cur = Current(api_key='0f73d522-ffa1-4b41-8339-95a6702b74d1', currency='gbp')
-#print(cur.get_current('btc'))
-print(len(cur.top_100().columns))
 '''
 # specify dates considered
 start = date(2018, 3, 1)
