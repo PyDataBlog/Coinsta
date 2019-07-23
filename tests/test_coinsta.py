@@ -1,12 +1,11 @@
 import unittest
-import warnings
 from datetime import date
-from coinsta.exceptions import WrongCoinCode, BadSnapshotURL
+from coinsta.exceptions import WrongCoinCode, BadSnapshotURL, ApiKeyError
 from coinsta.core import Historical, Current, HistoricalSnapshot
 
 
 class TestCoinsta(unittest.TestCase):
-
+    k = '0f73d522-ffa1-4b41-8339-95a6702b74d1'
     def test_historical(self):
 
         with self.assertRaises(TypeError):
@@ -26,9 +25,6 @@ class TestCoinsta(unittest.TestCase):
             return Historical('fake_ticker', start=start).get_data()
 
     def test_get_data(self):
-        warnings.filterwarnings("ignore", message="can't resolve package from __spec__ or __package__, "
-                                                  "falling back on __name__ and __path__")
-
         coin_spec = Historical.from_strings('dash', '2018-1-1', '2018-3-1', hyphen=True)
         data = coin_spec.get_data()
         data_cols = len(data.columns)
@@ -56,23 +52,30 @@ class TestCoinsta(unittest.TestCase):
         self.assertEqual(ticker, 'btc')
 
     def test_get_current(self):
-        btc_current = Current.get_current('btc')
-        no_items = len(btc_current.index)
-        self.assertEqual(no_items, 12)
+        cur = Current(TestCoinsta.k)
+        cur_btc = cur.get_current('btc')
+        size = len(cur_btc.keys())
+        self.assertEqual(size, 13)
 
     def test_bad_current(self):
-        with self.assertRaises(AttributeError):
-            return Current.get_current('kkk')
+
+        with self.assertRaises(ApiKeyError):
+            cur = Current('bad-api-key')
+            return cur.get_current('btc')
 
     def test_global_info(self):
-        glo_info = Current.global_info()
-        no_keys = len(glo_info.keys())
-        self.assertEqual(no_keys, 5)
+        cur = Current(TestCoinsta.k)
+        global_100 = cur.global_info()
+        size = len(global_100)
+
+        self.assertEqual(size, 11)
 
     def test_top_100(self):
-        top_100 = Current.top_100()
-        no_cols = len(top_100.columns)
-        self.assertEqual(no_cols, 9)
+        cur = Current(TestCoinsta.k, currency='usd')
+        top_100 = cur.top_100()
+        size_cols = len(top_100.columns)
+
+        self.assertEqual(size_cols, 20)
 
     def test_historical_snapshot(self):
         snap_date = date(2018, 7, 29)

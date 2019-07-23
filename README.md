@@ -1,15 +1,16 @@
 # Coinsta
-A Python :snake: package for acquiring both historical and current data of cryptocurrencies:moneybag:.
+A Python :snake: package for acquiring both historical and current data of crypto-currencies:moneybag:.
 ___
 
 **Author:** Bernard Brenyah
 #### Project Status
-[![Latest Version](https://pypip.in/version/coinsta/badge.svg)](https://pypi.python.org/pypi/coinsta/)
+[![Latest Version](https://img.shields.io/pypi/v/coinsta.svg)](https://pypi.python.org/pypi/coinsta/)
 [![Build Status](https://www.travis-ci.org/PyDataBlog/Coinsta.svg?branch=master)](https://www.travis-ci.org/PyDataBlog/Coinsta)
+[![Issues](https://img.shields.io/github/issues/PyDataBlog/coinsta.svg)](https://github.com/PyDataBlog/Coinsta/issues)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/PyDataBlog/Coinsta/commits/master)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FPyDataBlog%2FCoinsta.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FPyDataBlog%2FCoinsta?ref=badge_shield)
-[![License](https://pypip.in/license/coinsta/badge.svg)](https://pypi.python.org/pypi/coinsta/)
-[![Supported Python Version](https://pypip.in/py_versions/coinsta/badge.svg)](https://pypi.python.org/pypi/coinsta/)
+[![License](https://img.shields.io/pypi/l/coinsta.svg?color=green)](https://pypi.python.org/pypi/coinsta/)
+[![Supported Python Version](https://img.shields.io/pypi/pyversions/coinsta.svg)](https://pypi.python.org/pypi/coinsta/)
 [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/PyDataBlog/Coinsta/master)
 
 ## Table of Content
@@ -38,6 +39,7 @@ This package leverages the power of the following packages:
 - `pandas`
 - `requests`
 - `lxml`
+- `PyQuery`
 ___
 ### Installation
 The easiest way to install Coinsta is to use the default python package installer `pip`:
@@ -60,14 +62,12 @@ ___
 - Get historical snapshots of cryptocurrencies 
 
 ##### Pending Features
+- [ ] Migrate the current class to the new CoinMarketCap API
 - [X] Support for Python 3.5
-- [ ] Miscellaneous Functions
-- [ ] Contribution guidelines
 - [X] test compliance with Python 3.7
 - [ ] Improve documentation and doc strings
 - [ ] Optimisation of code
 - [X] Support for CoinMarketCap's historical snapshots
-- [ ] Support for market index comparisons
 
 ### How To Use
 **Historical Data:**
@@ -92,7 +92,7 @@ by default the end date is set to use the "today's" date
 ```
 **Alternative Constructors for Historical data from dates in the form of strings (YYYY-MM-DD) or (YYYY/MM/DD):**
 
-```py
+```python
 from coinsta.core import Historical
 
 # default alternative method for "-" formatted date strings
@@ -122,7 +122,7 @@ Luckily, CoinMarketCap delivers periodic snapshots of the this type of rankings.
 
 
 The Historical Snapshot feature returns a Pandas DataFrame object with the following self describing columns:
-```
+```python
 Index(['Rank', 'Name', 'Symbol', 'Market Cap', 'Price', 'Circulating Supply',
        'Volume (24h)', '% 1h', '% 24h', '% 7d'],
       dtype='object')
@@ -140,56 +140,56 @@ print(july_2018_snapshot.info())
 ```
 
 
-
-**Current Data:**
+**Current Data:** 
 ```python
-# import the Current class 
+# import the Current class and instantiate the current class object with specifications
 from coinsta.core import Current
+cur = Current(api_key='YOUR-API-KEY-HERE', currency='eur')  # Default is usd
 
 # get current market information on a specified crypto
-btc_current = Current.get_current('btc')
+btc_current = cur.get_current('btc')
 print(btc_current)
 
 # get the top 100 cryptos (in terms of market cap)
-current_100 = Current.top_100()
+current_100 = cur.top_100(limit=100)  # Default limit is 100 but can be increased as a user wishes
 print(current_100.head())
 
 # get global overview of crypto markets
-glo_info = Current.global_info()
+glo_info = cur.global_info()
 print(glo_info)
 
 
 ```
 The `get_current()` method from the current class returns a `pandas` DataFrame object with one column representing the following named rows of information on the cryptocurrency specified:
 
-```
-name                    
-symbol               
-rank                 
-circulating_supply 
-total_supply        
-max_supply              
-price                   
-volume_24h          
-market_cap          
-percent_change_1h          
-percent_change_24h         
-percent_change_7d    
+```python
+dict_keys(['name', 'symbol', 'rank', 'circulating_supply',
+ 'total_supply', 'max_supply', 'price', 'volume_24h',
+  'percent_change_1h', 'percent_change_24h', 'percent_change_7d',
+   'market_cap', 'last_updated'])   
 ```
 The `top_100` method in the current class returns a `pandas` DataFrame object of the top 100 cryptocurrencies in terms of market capitalization. The following are the columns returned:
 
-```
-['name', 'symbol', 'rank', 'price', 'volume_24h', 'market_cap', 'percent_change_1h', 'percent_change_24h', 'percent_change_7d']
+```python
+['id', 'name', 'symbol', 'slug', 'num_market_pairs', 'date_added',
+ 'tags', 'max_supply', 'circulating_supply', 'total_supply', 'platform', 
+ 'cmc_rank', 'last_updated', '*currency*.price', '*currency*.volume_24h',
+ '*currency*.percent_change_1h', '*currency*.percent_change_24h', '*currency*.percent_change_7d',
+  '*currency*.market_cap', '*currency*.last_updated']
 ```
 
 Finally, the `global_info()` method in Current class returns a dictionary with the following keys as an overview of cryptocurrency markets as a whole
 
-```
-dict_keys(['active_cryptos', 'active_markets', 'btc_dominance', 'total_market_cap', 'total_volume_24h'])
+```python
+dict_keys(['active_cryptos', 'active_exchanges', 'btc_dominance',
+ 'eth_dominance', 'total_market_cap', 'total_volume_24h', 
+ 'total_volume_24h_reported', 'altcoin_volume_24h', 
+ 'altcoin_volume_24h_reported', 'altcoin_market_cap', 'last_updated'])
 ```
 
 ___
 ### Release History
+- 0.1.4 - Re-wrote the Current classes to use the new CoinMarketCap API 
 - 0.1.3  - Added Historical Snapshot feature
 - 0.1.2  - Added support for Python 3.5 and 3.7 
 - 0.1.1  - Added license info and improved documentation 
