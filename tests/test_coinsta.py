@@ -1,5 +1,4 @@
 import unittest
-import warnings
 from datetime import date
 from coinsta.exceptions import WrongCoinCode, BadSnapshotURL, ApiKeyError
 from coinsta.core import Historical, Current, HistoricalSnapshot

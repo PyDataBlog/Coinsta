@@ -82,7 +82,7 @@ class Historical:
         
         # Clean up the DataFrame
         df['Date'] = pd.to_datetime(df['Date'])
-        
+
         df.rename(
             {
                 "Open*": "Open",
@@ -193,7 +193,7 @@ class Current:
         self.currency = currency.upper()
 
     def __repr__(self):
-        return "<Current(api_key={1}, currency{1})>".format(self.api_key, self.currency)
+        return "<Current(api_key={0}, currency{1})>".format(self.api_key, self.currency)
 
     def __str__(self):
         return "Current class specified with key: {0} & currency: {1}".format(self.api_key, self.currency)
