@@ -2,7 +2,7 @@
 import pandas as pd
 import requests
 from pandas.io.json import json_normalize
-from coinsta.exceptions import BadSnapshotURL, WrongCoinCode
+from coinsta.exceptions import BadSnapshotURL, WrongCoinCode, ApiKeyError
 from coinsta.utils import _readable_date, _ticker_checker, _snapshot_readable_date, _parse_cmc_url
 from datetime import date, datetime
 from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
@@ -183,6 +183,9 @@ class Current:
     """
     A class that connects to CoinMarketCap API and returns current
     data information for specified ticker.
+
+    Supported fiat currencies: 'https://coinmarketcap.com/api/documentation/v1/#section/Standards-and-Conventions'
+    API Keys signup available at: 'https://pro.coinmarketcap.com/signup/'
     """
 
     def __init__(self, api_key=None, currency='USD'):
@@ -210,24 +213,28 @@ class Current:
             if response_data['status']['error_code'] == 400:
                 raise WrongCoinCode('Invalid ticker from "CoinMarketCap.com". Please supply a valid crypto ticker')
 
-            coins_dict = response_data['data']
+            elif response_data['status']['error_code'] == 401:
+                raise ApiKeyError('Please check API Key as it was rejected by CoinMarketCap')
 
-            for v in coins_dict.values():
+            else:
+                coins_dict = response_data['data']
 
-                my_dict = dict()
-                my_dict['name'] = v['name']
-                my_dict['symbol'] = v['symbol']
-                my_dict['rank'] = v['cmc_rank']
-                my_dict['circulating_supply'] = v['circulating_supply']
-                my_dict['total_supply'] = v['total_supply']
-                my_dict['max_supply'] = v['max_supply']
+                for v in coins_dict.values():
 
-                quotes = v['quote'][self.currency]
+                    my_dict = dict()
+                    my_dict['name'] = v['name']
+                    my_dict['symbol'] = v['symbol']
+                    my_dict['rank'] = v['cmc_rank']
+                    my_dict['circulating_supply'] = v['circulating_supply']
+                    my_dict['total_supply'] = v['total_supply']
+                    my_dict['max_supply'] = v['max_supply']
 
-                for key, val in quotes.items():
-                    my_dict[key] = val
+                    quotes = v['quote'][self.currency]
 
-                return my_dict
+                    for key, val in quotes.items():
+                        my_dict[key] = val
+
+                    return my_dict
 
         except (ConnectionError, Timeout, TooManyRedirects) as e:
             raise e

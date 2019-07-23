@@ -87,6 +87,7 @@ def _parse_cmc_url(url, api_key, **kwargs):
     try:
         response = session.get(url, params=parameters)
         response_json = json.loads(response.text)
+        session.close()
         return response_json
 
     except (ConnectionError, Timeout, TooManyRedirects) as e:

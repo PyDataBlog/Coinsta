@@ -1,12 +1,12 @@
 import unittest
 import warnings
 from datetime import date
-from coinsta.exceptions import WrongCoinCode, BadSnapshotURL
+from coinsta.exceptions import WrongCoinCode, BadSnapshotURL, ApiKeyError
 from coinsta.core import Historical, Current, HistoricalSnapshot
 
 
 class TestCoinsta(unittest.TestCase):
-
+    k = '0f73d522-ffa1-4b41-8339-95a6702b74d1'
     def test_historical(self):
 
         with self.assertRaises(TypeError):
@@ -56,16 +56,30 @@ class TestCoinsta(unittest.TestCase):
         self.assertEqual(ticker, 'btc')
 
     def test_get_current(self):
-        pass
+        cur = Current(TestCoinsta.k, currency='usd')
+        cur_btc = cur.get_current('btc')
+        size = len(cur_btc.keys())
+        self.assertEqual(size, 13)
 
     def test_bad_current(self):
-        pass
+
+        with self.assertRaises(ApiKeyError):
+            cur = Current('bad-api-key', currency='usd')
+            return cur.get_current('btc')
 
     def test_global_info(self):
-        pass
+        cur = Current(TestCoinsta.k, currency='usd')
+        global_100 = cur.global_info()
+        size = len(global_100)
+
+        self.assertEqual(size, 11)
 
     def test_top_100(self):
-        pass
+        cur = Current(TestCoinsta.k, currency='usd')
+        top_100 = cur.top_100()
+        size_cols = len(top_100.columns)
+
+        self.assertEqual(size_cols, 20)
 
     def test_historical_snapshot(self):
         snap_date = date(2018, 7, 29)
