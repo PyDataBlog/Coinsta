@@ -92,7 +92,7 @@ by default the end date is set to use the "today's" date
 ```
 **Alternative Constructors for Historical data from dates in the form of strings (YYYY-MM-DD) or (YYYY/MM/DD):**
 
-```py
+```python
 from coinsta.core import Historical
 
 # default alternative method for "-" formatted date strings
@@ -122,7 +122,7 @@ Luckily, CoinMarketCap delivers periodic snapshots of the this type of rankings.
 
 
 The Historical Snapshot feature returns a Pandas DataFrame object with the following self describing columns:
-```
+```python
 Index(['Rank', 'Name', 'Symbol', 'Market Cap', 'Price', 'Circulating Supply',
        'Volume (24h)', '% 1h', '% 24h', '% 7d'],
       dtype='object')
@@ -162,30 +162,29 @@ print(glo_info)
 ```
 The `get_current()` method from the current class returns a `pandas` DataFrame object with one column representing the following named rows of information on the cryptocurrency specified:
 
-```
-name                    
-symbol               
-rank                 
-circulating_supply 
-total_supply        
-max_supply              
-price                   
-volume_24h          
-market_cap          
-percent_change_1h          
-percent_change_24h         
-percent_change_7d    
+```python
+dict_keys(['name', 'symbol', 'rank', 'circulating_supply',
+ 'total_supply', 'max_supply', 'price', 'volume_24h',
+  'percent_change_1h', 'percent_change_24h', 'percent_change_7d',
+   'market_cap', 'last_updated'])   
 ```
 The `top_100` method in the current class returns a `pandas` DataFrame object of the top 100 cryptocurrencies in terms of market capitalization. The following are the columns returned:
 
-```
-['name', 'symbol', 'rank', 'price', 'volume_24h', 'market_cap', 'percent_change_1h', 'percent_change_24h', 'percent_change_7d']
+```python
+['id', 'name', 'symbol', 'slug', 'num_market_pairs', 'date_added',
+ 'tags', 'max_supply', 'circulating_supply', 'total_supply', 'platform', 
+ 'cmc_rank', 'last_updated', '*currency*.price', '*currency*.volume_24h',
+ '*currency*.percent_change_1h', '*currency*.percent_change_24h', '*currency*.percent_change_7d',
+  '*currency*.market_cap', '*currency*.last_updated']
 ```
 
 Finally, the `global_info()` method in Current class returns a dictionary with the following keys as an overview of cryptocurrency markets as a whole
 
-```
-dict_keys(['active_cryptos', 'active_markets', 'btc_dominance', 'total_market_cap', 'total_volume_24h'])
+```python
+dict_keys(['active_cryptos', 'active_exchanges', 'btc_dominance',
+ 'eth_dominance', 'total_market_cap', 'total_volume_24h', 
+ 'total_volume_24h_reported', 'altcoin_volume_24h', 
+ 'altcoin_volume_24h_reported', 'altcoin_market_cap', 'last_updated'])
 ```
 
 ___
