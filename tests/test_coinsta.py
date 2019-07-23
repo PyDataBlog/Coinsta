@@ -26,9 +26,6 @@ class TestCoinsta(unittest.TestCase):
             return Historical('fake_ticker', start=start).get_data()
 
     def test_get_data(self):
-        warnings.filterwarnings("ignore", message="can't resolve package from __spec__ or __package__, "
-                                                  "falling back on __name__ and __path__")
-
         coin_spec = Historical.from_strings('dash', '2018-1-1', '2018-3-1', hyphen=True)
         data = coin_spec.get_data()
         data_cols = len(data.columns)
@@ -56,7 +53,7 @@ class TestCoinsta(unittest.TestCase):
         self.assertEqual(ticker, 'btc')
 
     def test_get_current(self):
-        cur = Current(TestCoinsta.k, currency='usd')
+        cur = Current(TestCoinsta.k)
         cur_btc = cur.get_current('btc')
         size = len(cur_btc.keys())
         self.assertEqual(size, 13)
@@ -64,11 +61,11 @@ class TestCoinsta(unittest.TestCase):
     def test_bad_current(self):
 
         with self.assertRaises(ApiKeyError):
-            cur = Current('bad-api-key', currency='usd')
+            cur = Current('bad-api-key')
             return cur.get_current('btc')
 
     def test_global_info(self):
-        cur = Current(TestCoinsta.k, currency='usd')
+        cur = Current(TestCoinsta.k)
         global_100 = cur.global_info()
         size = len(global_100)
 

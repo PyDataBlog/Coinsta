@@ -140,22 +140,22 @@ print(july_2018_snapshot.info())
 ```
 
 
-# NB: Current Data functionality deprecated until the re-write is completed
 **Current Data:** 
 ```python
-# import the Current class 
+# import the Current class and instantiate the current class object with specifications
 from coinsta.core import Current
+cur = Current(api_key='YOUR-API-KEY-HERE', currency='eur')  # Default is usd
 
 # get current market information on a specified crypto
-btc_current = Current.get_current('btc')
+btc_current = cur.get_current('btc')
 print(btc_current)
 
 # get the top 100 cryptos (in terms of market cap)
-current_100 = Current.top_100()
+current_100 = cur.top_100(limit=100)  # Default limit is 100 but can be increased as a user wishes
 print(current_100.head())
 
 # get global overview of crypto markets
-glo_info = Current.global_info()
+glo_info = cur.global_info()
 print(glo_info)
 
 
