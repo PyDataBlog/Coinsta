@@ -1,9 +1,12 @@
 # Coinsta
+
 A Python :snake: package for acquiring both historical and current data of crypto-currencies:moneybag:.
-___
+_________________________________________________________________________________________________________
 
 **Author:** Bernard Brenyah
-#### Project Status
+
+## Project Status
+
 [![Latest Version](https://img.shields.io/pypi/v/coinsta.svg)](https://pypi.python.org/pypi/coinsta/)
 [![Build Status](https://www.travis-ci.org/PyDataBlog/Coinsta.svg?branch=master)](https://www.travis-ci.org/PyDataBlog/Coinsta)
 [![Issues](https://img.shields.io/github/issues/PyDataBlog/coinsta.svg)](https://github.com/PyDataBlog/Coinsta/issues)
@@ -14,34 +17,41 @@ ___
 [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/PyDataBlog/Coinsta/master)
 
 ## Table of Content
-1. [Motivation](#motivation) 
+
+1. [Motivation](#motivation)
 2. [Frameworks Used](#frameworks-used)
 3. [Installation](#installation)
 4. [Features](#features)
-    - 4.1 [Pending Features](#pending-features)
+- 4.1 [Pending Features](#pending-features)
 5. [How To Use](#how-to-use)
 6. [Release History](#release-history)
 7. [How To Contribute](#how-to-contribute)
 8. [Credits](#credits)
 9. [License](#license)
-___
+
+______________________________________________________________________________________________________________________________________________________________________________________
+
 ### Motivation
+
 Why `coinsta`?
 I spent the past couple of months on a graduate dissertation which required the use of both historical and current data on cryptocurrencies. After browsing the Python Packaging Index (PYPI), I was frustrated by the lack of a Python package that catered for such needs. As far as I know only [cyrptoCMD](https://github.com/guptarohit/cryptoCMD) came close to meeting my needs. The only drawback is the that package only delivers historical data. OK so "*why not edit that project and make a pull request with your suggestions?*"
 
 That was the original plan until I realised that the scraping code could relatively be done quickly with the help of `pandas` package. If I went with the original plan I would have to rewrite the whole code and implementation ideas for `cryptoCMD` project. The only logical conclusion was starting a new project that I wish I had during my data collection process. A project inspired by scripts I generated for my dissertation project.
 
 As a result, this project is the first Python project that supplies both historical and current data on cryptocurrency markets and assets in one coherent package.
-____
+______________________________________________________________________________________________________________________________________________________________________________________
 
 ### Frameworks Used
+
 This package leverages the power of the following packages:
 - `pandas`
 - `requests`
 - `lxml`
 - `PyQuery`
-___
+______________________________________________________________________________________________________________________________________________________________________________________
+
 ### Installation
+
 The easiest way to install Coinsta is to use the default python package installer `pip`:
 
 ```
@@ -53,15 +63,18 @@ and for the few brave ones who like bleeding edge technology, the latest source 
 ```
 pip install git+git://github.com/PyDataBlog/Coinsta.git
 ```
-___
-### Features
-- Current global information on cryptocurrency markets
-- Current market information on the top 100 cryptocurrencies
-- Current data on a specified cryptocurrency 
-- Historical data on all active cryptocurrencies
-- Get historical snapshots of cryptocurrencies 
+____________________________________________________________________________________________________________________________________________________________________________________
 
-##### Pending Features
+### Features
+
+- Current global information on cryptocurrency markets.
+- Current market information on the top 100 cryptocurrencies.
+- Current data on a specified cryptocurrency.
+- Historical data on all active cryptocurrencies.
+- Get historical snapshots of cryptocurrencies.
+
+### Pending Features
+
 - [X] Migrate the current class to the new CoinMarketCap API
 - [X] Support for Python 3.5
 - [X] test compliance with Python 3.7
@@ -69,8 +82,9 @@ ___
 - [X] Optimisation of code
 - [X] Support for CoinMarketCap's historical snapshots
 
-### How To Use
-**Historical Data:**
+#### How To Use
+
+**Historical Data**
 ```py
 # import the Historical class
 from coinsta.core import Historical
@@ -116,10 +130,8 @@ The `get_data()` method and the `from_strings` method from the Historical class 
 Date
 ```
 
-
 So what was the top cryptocurrency (in terms of market capitalisation) on date XYZ?
 Luckily, CoinMarketCap delivers periodic snapshots of the this type of rankings. The `HistoricalSnapshot` class taps into data to supply users with such information.
-
 
 The Historical Snapshot feature returns a Pandas DataFrame object with the following self describing columns:
 ```python
@@ -127,7 +139,6 @@ Index(['Rank', 'Name', 'Symbol', 'Market Cap', 'Price', 'Circulating Supply',
        'Volume (24h)', '% 1h', '% 24h', '% 7d'],
       dtype='object')
 ```
-
 
 **Historical Snapshots:**
 ```python
@@ -142,8 +153,7 @@ july_2018_snapshot = july_2018.get_snapshot()
 print(july_2018_snapshot.info())
 ```
 
-
-**Current Data:** 
+**Current Data:**
 ```python
 # import the Current class and instantiate the current class object with specifications
 from coinsta.core import Current
@@ -169,13 +179,13 @@ The `get_current()` method from the current class returns a `pandas` DataFrame o
 dict_keys(['name', 'symbol', 'rank', 'circulating_supply',
  'total_supply', 'max_supply', 'price', 'volume_24h',
   'percent_change_1h', 'percent_change_24h', 'percent_change_7d',
-   'market_cap', 'last_updated'])   
+   'market_cap', 'last_updated'])
 ```
 The `top_100` method in the current class returns a `pandas` DataFrame object of the top 100 cryptocurrencies in terms of market capitalization. The following are the columns returned:
 
 ```python
 ['id', 'name', 'symbol', 'slug', 'num_market_pairs', 'date_added',
- 'tags', 'max_supply', 'circulating_supply', 'total_supply', 'platform', 
+ 'tags', 'max_supply', 'circulating_supply', 'total_supply', 'platform',
  'cmc_rank', 'last_updated', '*currency*.price', '*currency*.volume_24h',
  '*currency*.percent_change_1h', '*currency*.percent_change_24h', '*currency*.percent_change_7d',
   '*currency*.market_cap', '*currency*.last_updated']
@@ -185,28 +195,35 @@ Finally, the `global_info()` method in Current class returns a dictionary with t
 
 ```python
 dict_keys(['active_cryptos', 'active_exchanges', 'btc_dominance',
- 'eth_dominance', 'total_market_cap', 'total_volume_24h', 
- 'total_volume_24h_reported', 'altcoin_volume_24h', 
+ 'eth_dominance', 'total_market_cap', 'total_volume_24h',
+ 'total_volume_24h_reported', 'altcoin_volume_24h',
  'altcoin_volume_24h_reported', 'altcoin_market_cap', 'last_updated'])
 ```
 
-___
-### Release History
-- 0.1.4 - Re-wrote the Current classes to use the new CoinMarketCap API 
+_____________________________________________________________________________________________________________________________________________________________________________________
+
+#### Release History
+
+- 0.1.4 - Re-wrote the Current classes to use the new CoinMarketCap API
 - 0.1.3  - Added Historical Snapshot feature
-- 0.1.2  - Added support for Python 3.5 and 3.7 
-- 0.1.1  - Added license info and improved documentation 
+- 0.1.2  - Added support for Python 3.5 and 3.7
+- 0.1.1  - Added license info and improved documentation
 - 0.1.0  - Initial Public Release
 
-### How to Contribute
+#### How to Contribute
+
 This project welcomes contributions from anyone interested in this project. Guidelines for contribution is being drafted but for now a pull request with explanation of the contributions will suffice.
-___
-### Credits
+______________________________________________________________________________________________________________________________________________________________________________________
+
+#### Credits
+
 Shoutout to [CoinMarketCap](https://coinmarketcap.com/) :heart: for the access to their API as well as allowing projects such as this plug into the datawarehouse.
-___
-### License
-License: [BSD-3](https://github.com/PyDataBlog/Coinsta/blob/master/LICENSE) 
+______________________________________________________________________________________________________________________________________________________________________________________
+
+#### License
+
+License: [BSD-3](https://github.com/PyDataBlog/Coinsta/blob/master/LICENSE)
 
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FPyDataBlog%2FCoinsta.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FPyDataBlog%2FCoinsta?ref=badge_large)
-___
+______________________________________________________________________________________________________________________________________________________________________________________
 [Back to top](#table-of-content)
