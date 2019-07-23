@@ -190,6 +190,7 @@ dict_keys(['active_cryptos', 'active_markets', 'btc_dominance', 'total_market_ca
 
 ___
 ### Release History
+- 0.1.4 - Re-wrote the Current classes to use the new CoinMarketCap API 
 - 0.1.3  - Added Historical Snapshot feature
 - 0.1.2  - Added support for Python 3.5 and 3.7 
 - 0.1.1  - Added license info and improved documentation 
