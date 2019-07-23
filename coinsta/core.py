@@ -79,7 +79,7 @@ class Historical:
         # Download the data based on the custom data url
         data = pd.read_html(site_url)
         df = data[0]
-        
+
         # Clean up the DataFrame
         df['Date'] = pd.to_datetime(df['Date'])
 
