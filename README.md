@@ -29,7 +29,7 @@ ________________________________________________________________________________
 9. [Credits](#credits)
 10. [License](#license)
 
-______________________________________________________________________________________________________________________________________________________________________________________
+_________________________________________________________________________________________________________
 
 ### Motivation
 
@@ -39,7 +39,8 @@ I spent the past couple of months on a graduate dissertation which required the 
 That was the original plan until I realised that the scraping code could relatively be done quickly with the help of `pandas` package. If I went with the original plan I would have to rewrite the whole code and implementation ideas for `cryptoCMD` project. The only logical conclusion was starting a new project that I wish I had during my data collection process. A project inspired by scripts I generated for my dissertation project.
 
 As a result, this project is the first Python project that supplies both historical and current data on cryptocurrency markets and assets in one coherent package.
-______________________________________________________________________________________________________________________________________________________________________________________
+
+_________________________________________________________________________________________________________
 
 ### Frameworks Used
 
@@ -50,23 +51,23 @@ This package leverages the power of the following packages:
 - `lxml`
 - `PyQuery`
 
-______________________________________________________________________________________________________________________________________________________________________________________
+_________________________________________________________________________________________________________
 
 ### Installation
 
 The easiest way to install Coinsta is to use the default python package installer `pip`:
 
-```shell
+```bash
 pip install coinsta
 ```
 
 and for the few brave ones who like bleeding edge technology, the latest source can be installed via with this command:
 
-```shell
+```bash
 pip install git+git://github.com/PyDataBlog/Coinsta.git
 ```
 
-____________________________________________________________________________________________________________________________________________________________________________________
+_________________________________________________________________________________________________________
 
 ### Features
 
@@ -103,10 +104,10 @@ coin_spec = Historical('btc', start=start, end=end)
 btc_data = coin_spec.get_data()
 print(btc_data.head())
 
-'''
-by default the end date is set to use the "today's" date
- of the user unless otherwise specified like above
-'''
+
+#by default the end date is set to use the "today's" date
+# of the user unless otherwise specified like above
+
 ```
 
 **Alternative Constructors for Historical data from dates in the form of strings (YYYY-MM-DD) or (YYYY/MM/DD):**
@@ -210,7 +211,7 @@ dict_keys(['active_cryptos', 'active_exchanges', 'btc_dominance',
  'altcoin_volume_24h_reported', 'altcoin_market_cap', 'last_updated'])
 ```
 
-_____________________________________________________________________________________________________________________________________________________________________________________
+_________________________________________________________________________________________________________
 
 #### Release History
 
@@ -223,17 +224,21 @@ ________________________________________________________________________________
 #### How to Contribute
 
 This project welcomes contributions from anyone interested in this project. Guidelines for contribution is being drafted but for now a pull request with explanation of the contributions will suffice.
-______________________________________________________________________________________________________________________________________________________________________________________
+
+_________________________________________________________________________________________________________
 
 #### Credits
 
 Shoutout to [CoinMarketCap](https://coinmarketcap.com/) :heart: for the access to their API as well as allowing projects such as this plug into the datawarehouse.
-______________________________________________________________________________________________________________________________________________________________________________________
+
+_________________________________________________________________________________________________________
 
 #### License
 
 License: [BSD-3](https://github.com/PyDataBlog/Coinsta/blob/master/LICENSE)
 
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FPyDataBlog%2FCoinsta.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FPyDataBlog%2FCoinsta?ref=badge_large)
-______________________________________________________________________________________________________________________________________________________________________________________
+
+_________________________________________________________________________________________________________
+
 [Back to top](#table-of-content)
