@@ -22,12 +22,12 @@ ________________________________________________________________________________
 2. [Frameworks Used](#frameworks-used)
 3. [Installation](#installation)
 4. [Features](#features)
-- 4.1 [Pending Features](#pending-features)
-5. [How To Use](#how-to-use)
-6. [Release History](#release-history)
-7. [How To Contribute](#how-to-contribute)
-8. [Credits](#credits)
-9. [License](#license)
+5. [Pending Features](#pending-features)
+6. [How To Use](#how-to-use)
+7. [Release History](#release-history)
+8. [How To Contribute](#how-to-contribute)
+9. [Credits](#credits)
+10. [License](#license)
 
 ______________________________________________________________________________________________________________________________________________________________________________________
 
@@ -44,25 +44,28 @@ ________________________________________________________________________________
 ### Frameworks Used
 
 This package leverages the power of the following packages:
+
 - `pandas`
 - `requests`
 - `lxml`
 - `PyQuery`
+
 ______________________________________________________________________________________________________________________________________________________________________________________
 
 ### Installation
 
 The easiest way to install Coinsta is to use the default python package installer `pip`:
 
-```
+```shell
 pip install coinsta
 ```
 
 and for the few brave ones who like bleeding edge technology, the latest source can be installed via with this command:
 
-```
+```shell
 pip install git+git://github.com/PyDataBlog/Coinsta.git
 ```
+
 ____________________________________________________________________________________________________________________________________________________________________________________
 
 ### Features
@@ -85,7 +88,8 @@ ________________________________________________________________________________
 #### How To Use
 
 **Historical Data**
-```py
+
+```python
 # import the Historical class
 from coinsta.core import Historical
 from datetime import date
@@ -104,6 +108,7 @@ by default the end date is set to use the "today's" date
  of the user unless otherwise specified like above
 '''
 ```
+
 **Alternative Constructors for Historical data from dates in the form of strings (YYYY-MM-DD) or (YYYY/MM/DD):**
 
 ```python
@@ -125,7 +130,7 @@ print(another_btc.head())
 
 The `get_data()` method and the `from_strings` method from the Historical class returns a `pandas` DataFrame object with sorted in an ascending order indexed the dates specified by the user:
 
-```
+```shell
     Open     High      Low    Close      Volume    Market_cap
 Date
 ```
@@ -134,6 +139,7 @@ So what was the top cryptocurrency (in terms of market capitalisation) on date X
 Luckily, CoinMarketCap delivers periodic snapshots of the this type of rankings. The `HistoricalSnapshot` class taps into data to supply users with such information.
 
 The Historical Snapshot feature returns a Pandas DataFrame object with the following self describing columns:
+
 ```python
 Index(['Rank', 'Name', 'Symbol', 'Market Cap', 'Price', 'Circulating Supply',
        'Volume (24h)', '% 1h', '% 24h', '% 7d'],
@@ -141,6 +147,7 @@ Index(['Rank', 'Name', 'Symbol', 'Market Cap', 'Price', 'Circulating Supply',
 ```
 
 **Historical Snapshots:**
+
 ```python
 from coinsta.core import HistoricalSnapshot
 from datetime import date
@@ -154,6 +161,7 @@ print(july_2018_snapshot.info())
 ```
 
 **Current Data:**
+
 ```python
 # import the Current class and instantiate the current class object with specifications
 from coinsta.core import Current
@@ -173,6 +181,7 @@ print(glo_info)
 
 
 ```
+
 The `get_current()` method from the current class returns a `pandas` DataFrame object with one column representing the following named rows of information on the cryptocurrency specified:
 
 ```python
@@ -181,6 +190,7 @@ dict_keys(['name', 'symbol', 'rank', 'circulating_supply',
   'percent_change_1h', 'percent_change_24h', 'percent_change_7d',
    'market_cap', 'last_updated'])
 ```
+
 The `top_100` method in the current class returns a `pandas` DataFrame object of the top 100 cryptocurrencies in terms of market capitalization. The following are the columns returned:
 
 ```python
