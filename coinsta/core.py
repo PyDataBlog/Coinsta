@@ -148,7 +148,8 @@ class HistoricalSnapshot:
         """
         snap_date = self.period.isoformat().replace("-", "")
         snap_url = "https://coinmarketcap.com/historical/{0}".format(snap_date)
-
+        
+        # change this to try/except block as requests always returns 200
         check_snap = requests.get(snap_url)
         if check_snap.status_code != 200:
             raise BadSnapshotURL("Check 'https://coinmarketcap.com/historical/' "
