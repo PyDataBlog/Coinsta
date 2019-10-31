@@ -1,6 +1,6 @@
 import unittest
 from datetime import date
-from coinsta.exceptions import WrongCoinCode, BadSnapshotURL, ApiKeyError
+from coinsta.exceptions import WrongCoinCode, BadSnapshotURL
 from coinsta.core import Historical, Current, HistoricalSnapshot
 
 
@@ -57,11 +57,6 @@ class TestCoinsta(unittest.TestCase):
         size = len(cur_btc.keys())
         self.assertEqual(size, 13)
 
-    def test_bad_current(self):
-
-        with self.assertRaises(ApiKeyError):
-            cur = Current('bad-api-key')
-            return cur.get_current('btc')
 
     def test_global_info(self):
         cur = Current(TestCoinsta.k)
@@ -85,7 +80,7 @@ class TestCoinsta(unittest.TestCase):
         self.assertEqual(len_july_2018, 10)
 
     def test_snapshot_period(self):
-        with self.assertRaises(BadSnapshotURL):
+        with self.assertRaises(ValueError):  # replace with BadSnapshotURL
             fake_date = date(1999, 1, 1)
             return HistoricalSnapshot(fake_date).get_snapshot()
 

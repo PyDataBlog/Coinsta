@@ -148,13 +148,14 @@ class HistoricalSnapshot:
         """
         snap_date = self.period.isoformat().replace("-", "")
         snap_url = "https://coinmarketcap.com/historical/{0}".format(snap_date)
-
+        
+        # change this to try/except block as requests always returns 200
         check_snap = requests.get(snap_url)
         if check_snap.status_code != 200:
             raise BadSnapshotURL("Check 'https://coinmarketcap.com/historical/' "
                                  "for available historical snapshot periods ")
         else:
-            snap_df = pd.read_html(snap_url)[0]
+            snap_df = pd.read_html(snap_url)[-1]
 
         cleaned_df = snap_df.rename({"#": "Rank"}, axis=1)
         cleaned_df = cleaned_df.iloc[0:, :-1]
