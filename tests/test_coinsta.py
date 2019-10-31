@@ -63,7 +63,7 @@ class TestCoinsta(unittest.TestCase):
         global_100 = cur.global_info()
         size = len(global_100)
 
-        self.assertEqual(size, 10)
+        self.assertEqual(size, 11)
 
     def test_top_100(self):
         cur = Current(TestCoinsta.k, currency='usd')
@@ -77,7 +77,7 @@ class TestCoinsta(unittest.TestCase):
         july_2018 = HistoricalSnapshot(snap_date)
         july_2018_snapshot = july_2018.get_snapshot()
         len_july_2018 = len(july_2018_snapshot.columns)
-        self.assertEqual(len_july_2018, 11)
+        self.assertEqual(len_july_2018, 10)
 
     def test_snapshot_period(self):
         with self.assertRaises(ValueError):  # replace with BadSnapshotURL
