@@ -82,7 +82,7 @@ ________________________________________________________________________________
 - [X] Migrate the current class to the new CoinMarketCap API
 - [X] Support for Python 3.5
 - [X] test compliance with Python 3.7
-- [ ] Improve documentation and doc strings
+- [X] Improve documentation and doc strings
 - [X] Optimisation of code
 - [X] Support for CoinMarketCap's historical snapshots
 
