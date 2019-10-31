@@ -2,3 +2,4 @@ requests==2.20.0
 pandas==0.23.1
 lxml==4.2.2 
 pyquery ==1.4.0
+html5lib==1.0.1
