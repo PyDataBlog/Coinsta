@@ -154,7 +154,7 @@ class HistoricalSnapshot:
             raise BadSnapshotURL("Check 'https://coinmarketcap.com/historical/' "
                                  "for available historical snapshot periods ")
         else:
-            snap_df = pd.read_html(snap_url)[0]
+            snap_df = pd.read_html(snap_url)[-1]
 
         cleaned_df = snap_df.rename({"#": "Rank"}, axis=1)
         cleaned_df = cleaned_df.iloc[0:, :-1]
