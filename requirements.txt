@@ -1,4 +1,4 @@
-requests>=2.19.1
-pandas>=0.23.1
-lxml>=4.2.2 
-pyquery >=1.4.0
+requests==2.19.1
+pandas==0.23.1
+lxml==4.2.2 
+pyquery ==1.4.0
