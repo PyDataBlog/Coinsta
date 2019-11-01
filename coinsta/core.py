@@ -1,6 +1,5 @@
 # Needed libraries
 import pandas as pd
-import requests
 from pandas.io.json import json_normalize
 from coinsta.exceptions import BadSnapshotURL, WrongCoinCode, ApiKeyError
 from coinsta.utils import _readable_date, _ticker_checker, _snapshot_readable_date, _parse_cmc_url
@@ -148,14 +147,14 @@ class HistoricalSnapshot:
         """
         snap_date = self.period.isoformat().replace("-", "")
         snap_url = "https://coinmarketcap.com/historical/{0}".format(snap_date)
-        
-        # change this to try/except block as requests always returns 200
-        check_snap = requests.get(snap_url)
-        if check_snap.status_code != 200:
+
+        try:
+            snap_df = pd.read_html(snap_url)  # Check for the existence of the table
+        except ValueError:
             raise BadSnapshotURL("Check 'https://coinmarketcap.com/historical/' "
                                  "for available historical snapshot periods ")
-        else:
-            snap_df = pd.read_html(snap_url)[-1]
+
+        snap_df = pd.read_html(snap_url)[-1]
 
         cleaned_df = snap_df.rename({"#": "Rank"}, axis=1)
         cleaned_df = cleaned_df.iloc[0:, :-1]

@@ -57,7 +57,6 @@ class TestCoinsta(unittest.TestCase):
         size = len(cur_btc.keys())
         self.assertEqual(size, 13)
 
-
     def test_global_info(self):
         cur = Current(TestCoinsta.k)
         global_100 = cur.global_info()
@@ -80,7 +79,7 @@ class TestCoinsta(unittest.TestCase):
         self.assertEqual(len_july_2018, 10)
 
     def test_snapshot_period(self):
-        with self.assertRaises(ValueError):  # replace with BadSnapshotURL
+        with self.assertRaises(BadSnapshotURL):
             fake_date = date(1999, 1, 1)
             return HistoricalSnapshot(fake_date).get_snapshot()
 
