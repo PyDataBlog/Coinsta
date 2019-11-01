@@ -50,6 +50,7 @@ This package leverages the power of the following packages:
 - `requests`
 - `lxml`
 - `PyQuery`
+- `beautifulsoup`
 
 _________________________________________________________________________________________________________
 
