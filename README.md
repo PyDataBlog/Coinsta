@@ -49,8 +49,6 @@ This package leverages the power of the following packages:
 - `pandas`
 - `requests`
 - `lxml`
-- `PyQuery`
-- `beautifulsoup`
 
 _________________________________________________________________________________________________________
 
@@ -81,8 +79,8 @@ ________________________________________________________________________________
 ### Pending Features
 
 - [X] Migrate the current class to the new CoinMarketCap API
-- [X] Support for Python 3.5
-- [X] test compliance with Python 3.7
+- [X] Drop support for Python 3.5
+- [X] test compliance with Python 3.8
 - [X] Improve documentation and doc strings
 - [X] Optimisation of code
 - [X] Support for CoinMarketCap's historical snapshots
@@ -215,6 +213,7 @@ dict_keys(['active_cryptos', 'active_exchanges', 'btc_dominance',
 _________________________________________________________________________________________________________
 
 #### Release History
+- 0.1.6 - Fix compliance with upstream changes, added support for Python 3.8 and dropped support for Python 3.5.
 - 0.1.5 - Updated historical snapshot to suit the new upstream changes from CoinMarketCap
 - 0.1.4 - Re-wrote the Current classes to use the new CoinMarketCap API
 - 0.1.3  - Added Historical Snapshot feature
