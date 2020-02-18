@@ -1,7 +1,7 @@
 import requests
 import json
 from datetime import datetime
-from pyquery import PyQuery
+import pandas as pd
 from coinsta.exceptions import WrongCoinCode
 from requests import Session
 from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
@@ -35,25 +35,21 @@ def _ticker_checker(ticker):
     :return: A string object representing the website crypto id for the supplied ticker
     """
     try:
-        # Pass the html from CoinMarketCap to PyQuery
+        # Pass the html from CoinMarketCap to Pandas
         url = "https://coinmarketcap.com/all/views/all/"
-        html = requests.get(url).text
-        raw_html = PyQuery(html)
+        df = pd.read_html(url)[-1]
+
+        # Get a dictionary of the names and symbols
+        check_dict = df[['Name', 'Symbol']].to_dict('records')
 
         # Upper case user supplied ticker
         ticker = ticker.upper()
 
-        # Locate all table rows in the raw html ignoring the table header row
-        rows = raw_html('tr')[1:]
-
-        # Go through each row selecting the ticker and the associated id used by CoinMarketCap url
-        for row in rows:
-            crypto_ticker = row.cssselect("td.text-left.col-symbol")[0].text_content()  # ticker
-            website_crypto_id = row.values()[0].split("id-")[1]  # CoinMarketCap site id for ticker
-
+        for item in check_dict:
             # Return the site id for the user specified  ticker
-            if ticker == crypto_ticker:
-                return website_crypto_id
+            if item['Symbol'] == ticker:
+                return item['Name']
+
         raise WrongCoinCode("'{0}' is unavailable on CoinMarketCap.com. Please check the website for the "
                             "right ticker information code".format(ticker))
     except Exception as e:
