@@ -2,4 +2,3 @@ requests==2.20.0
 pandas==0.25.2
 lxml==4.2.2
 html5lib==1.0.1
-beautifulsoup4==4.8.1
