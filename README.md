@@ -49,6 +49,7 @@ This package leverages the power of the following packages:
 - `pandas`
 - `requests`
 - `lxml`
+- `beautifoulsoup`
 
 _________________________________________________________________________________________________________
 
