@@ -1,6 +1,6 @@
 # Needed libraries
 import pandas as pd
-from pandas.io.json import json_normalize
+from pandas import json_normalize
 from coinsta.exceptions import BadSnapshotURL, WrongCoinCode, ApiKeyError
 from coinsta.utils import _readable_date, _ticker_checker, _snapshot_readable_date, _parse_cmc_url
 from datetime import date, datetime
