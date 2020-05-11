@@ -6,20 +6,18 @@ from coinsta.core import Historical, Current, HistoricalSnapshot
 
 class TestCoinsta(unittest.TestCase):
     k = '0f73d522-ffa1-4b41-8339-95a6702b74d1'
-    def test_historical(self):
 
+    def test_historical(self):
         with self.assertRaises(TypeError):
             start = date(2018, 2, 20)
             return Historical('dash', start=start, end=123)
 
     def test_historical_start(self):
-
         with self.assertRaises(TypeError):
             end = date(2018, 2, 20)
             return Historical('dash', start=123, end=end)
 
     def test_historical_ticker(self):
-
         with self.assertRaises(WrongCoinCode):
             start = date(2018, 2, 20)
             return Historical('fake_ticker', start=start).get_data()
