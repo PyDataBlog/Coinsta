@@ -5,6 +5,7 @@ from coinsta.exceptions import BadSnapshotURL, WrongCoinCode, ApiKeyError
 from coinsta.utils import _readable_date, _ticker_checker, _snapshot_readable_date, _parse_cmc_url
 from datetime import date, datetime
 from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
+from urllib.error import HTTPError
 
 
 # Historical Class for all methods related to historical data
@@ -76,7 +77,12 @@ class Historical:
                                                                                                         self.start,
                                                                                                         self.end)
         # Download the data based on the custom data url
-        data = pd.read_html(site_url)
+        try:
+            data = pd.read_html(site_url)
+        except HTTPError:
+            raise WrongCoinCode("'{0}' is unavailable on CoinMarketCap.com. "
+                                "Please check the website for the right ticker name".format(slug))
+
         df = data[-1]
 
         # Clean up the DataFrame

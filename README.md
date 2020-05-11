@@ -214,6 +214,7 @@ dict_keys(['active_cryptos', 'active_exchanges', 'btc_dominance',
 _________________________________________________________________________________________________________
 
 #### Release History
+- 0.1.8 - Relaxed checks on specified tickers since upstream only shows top 100 cryptos.
 - 0.1.7 - Trimmed code dependencies.
 - 0.1.6 - Fix compliance with upstream changes, added support for Python 3.8 and dropped support for Python 3.5.
 - 0.1.5 - Updated historical snapshot to suit the new upstream changes from CoinMarketCap

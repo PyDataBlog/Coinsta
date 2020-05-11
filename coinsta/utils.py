@@ -1,8 +1,6 @@
-import requests
 import json
-from datetime import datetime
 import pandas as pd
-from coinsta.exceptions import WrongCoinCode
+from datetime import datetime
 from requests import Session
 from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
 
@@ -50,8 +48,12 @@ def _ticker_checker(ticker):
             if item['Symbol'] == ticker:
                 return item['Name']
 
-        raise WrongCoinCode("'{0}' is unavailable on CoinMarketCap.com. Please check the website for the "
-                            "right ticker information code".format(ticker))
+        print("`{0}` was not found in the top 100 list so defaulting to exact ticker specified. \n"
+              "Search `{0}` on `https://coinmarketcap.com/coins/` for the right ticker if it fails. \n"
+              "".format(ticker.lower()))
+
+        return ticker.lower()
+
     except Exception as e:
         raise e
 
